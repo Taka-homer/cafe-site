@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="季節のチーズケーキ（仮画像）">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6c1a0"/>
+      <stop offset="1" stop-color="#b09469"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <g transform="translate(340 196) scale(1.4)" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 44 h44 l-8 40 h-28 Z"/>
+    <path d="M30 44 a22 22 0 0 1 44 0"/>
+    <path d="M52 22 v-8"/>
+    <circle cx="52" cy="10" r="4"/>
+  </g>
+  <text x="400" y="430" text-anchor="middle" font-family="serif" font-size="22" letter-spacing="3" fill="#ffffff" fill-opacity="0.8">季節のチーズケーキ</text>
+</svg>

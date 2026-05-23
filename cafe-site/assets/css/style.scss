@@ -1,0 +1,1038 @@
+@charset "UTF-8";
+
+/* ============================================================
+   Sass 変数 & mixin
+   - このファイル（style.scss）がソースです
+   - コンパイルすると同じ階層に style.css が出力されます
+   - HTML からは style.css を読み込みます
+============================================================ */
+
+// ブレイクポイント（Sass変数）
+$breakpoint-tablet: 1024px;
+$breakpoint-md: 800px;   // 中間サイズ（タブレット縦〜大きめスマホ）
+$breakpoint-sp: 600px;
+
+// メディアクエリ用 mixin（PCファースト：指定px以下で @content を適用）
+// 使い方： @include mq(tablet) { ... }
+@mixin mq($device) {
+  @if $device == tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $device == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $device == sp {
+    @media (max-width: $breakpoint-sp) {
+      @content;
+    }
+  }
+}
+
+/* ============================================================
+   カラー・フォント・レイアウト（CSSカスタムプロパティ）
+============================================================ */
+:root {
+  /* カラー */
+  --color-bg: #f4efe4;          /* ベースの生成り色 */
+  --color-bg-deep: #ebe3d3;     /* 一段濃い背景色 */
+  --color-text: #4a4034;        /* 基本のテキスト（こげ茶） */
+  --color-text-light: #8b7e6b;  /* 補助テキスト */
+  --color-accent: #a8916c;      /* ボタンなどのアクセント（茶） */
+  --color-accent-dark: #8d764f; /* アクセントの濃い色 */
+  --color-white: #ffffff;
+
+  /* フォント */
+  --font-mincho: "Shippori Mincho", "Yu Mincho", "游明朝", serif;
+  --font-script: "Parisienne", cursive;
+
+  /* レイアウト */
+  --container: 1200px;          /* コンテンツ最大幅 */
+  --header-height: 88px;        /* ヘッダーの高さ */
+}
+
+/* ============================================================
+   ベース
+============================================================ */
+html {
+  scroll-behavior: smooth; // アンカーリンクを滑らかにスクロール
+  overflow-x: hidden;      // 横方向のはみ出しを根本から防ぐ（モバイルで右に余白が出る現象の対策）
+}
+
+body {
+  font-family: var(--font-mincho);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.8;
+  font-size: 16px;
+  overflow-x: hidden; // 横スクロールを防止
+  -webkit-font-smoothing: antialiased;
+
+  // ドロワーを開いている間は背面をスクロールさせない
+  &.is-drawer-open {
+    overflow: hidden;
+  }
+}
+
+img {
+  display: block;
+}
+
+// 各セクションの共通の内側余白とコンテンツ幅
+.concept__inner,
+.feature__inner,
+.service__inner,
+.cta__inner,
+.footer__inner {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+// 固定ヘッダーに隠れないようにアンカー位置を調整
+section[id] {
+  scroll-margin-top: var(--header-height);
+}
+
+/* ============================================================
+   共通：見出しラベル（Concept / Feature など筆記体の小見出し）
+============================================================ */
+.concept__label,
+.feature__label,
+.service__label,
+.cta__label {
+  font-family: var(--font-script);
+  font-size: 38px;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   共通：ボタン
+============================================================ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-width: 240px;
+  padding: 20px 34px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &__arrow {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: var(--color-accent-dark);
+    transform: translateY(-3px);
+
+    .button__arrow {
+      transform: translateX(6px);
+    }
+  }
+
+  // 明るい背景用のボタン（CTA内で使用）
+  &--light {
+    background-color: var(--color-white);
+    color: var(--color-text);
+
+    &:hover {
+      background-color: var(--color-bg);
+    }
+  }
+}
+
+/* ============================================================
+   ヘッダー
+============================================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--header-height);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  // スクロール後：背景色と影を付ける
+  &.is-scrolled {
+    background-color: rgba(244, 239, 228, 0.95);
+    box-shadow: 0 2px 16px rgba(74, 64, 52, 0.08);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 40px;
+    // 背景に濃い色を敷いて、FV画像・スクロール後のどちらでも文字を読みやすくする
+    background-color: rgba(74, 64, 52, 0.92);
+  }
+
+  // ロゴ
+  &__logo {
+    display: block;
+    margin-right: auto; // ロゴを左、ナビを右に寄せる
+  }
+
+  &__logo-main {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-bg); // 濃い背景に合わせて明るい文字色
+  }
+
+  &__logo-sub {
+    display: block;
+    margin-top: 2px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: rgba(244, 239, 228, 0.6); // 濃い背景に合わせた控えめな明るい文字色
+  }
+
+  // PCナビ
+  &__nav-list {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__nav-link {
+    position: relative;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    padding-bottom: 4px;
+    color: var(--color-bg); // 濃い背景に合わせて明るい文字色
+
+    // ホバー時に下線をのばす
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  // 予約ボタン
+  &__reserve {
+    margin-left: 44px;
+    padding: 12px 28px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--color-accent-dark);
+    }
+  }
+
+  // ハンバーガーボタン（PCでは非表示）
+  &__burger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin-left: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    // 開いている時：×印に変形
+    &.is-open {
+      .header__burger-line:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+
+      .header__burger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .header__burger-line:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+    }
+  }
+
+  &__burger-line {
+    display: block;
+    width: 26px;
+    height: 1.5px;
+    background-color: var(--color-bg); // 濃い背景でも見えるよう明るい色に
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+}
+
+/* ============================================================
+   ドロワーメニュー
+============================================================ */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  visibility: hidden; // 閉じている時は無効化
+  opacity: 0;
+  overflow: hidden;   // 内側で translateX する body が viewport をはみ出さないようクリップ（右余白対策）
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+
+    // メニュー本体をスライドインさせる
+    .drawer__body {
+      transform: translateX(0);
+    }
+  }
+
+  // 背景の暗幕
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(40, 34, 27, 0.45);
+  }
+
+  // メニュー本体（右からスライドイン）
+  &__body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 80%;
+    height: 100%;
+    padding: 120px 40px 40px;
+    background-color: var(--color-bg);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+
+  &__logo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin-bottom: 32px;
+  }
+
+  &__item + &__item {
+    border-top: 1px solid rgba(74, 64, 52, 0.12);
+  }
+
+  &__link {
+    display: block;
+    padding: 18px 4px;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+  }
+
+  &__reserve {
+    display: block;
+    margin-top: 32px;
+    padding: 16px;
+    text-align: center;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ============================================================
+   FV（ファーストビュー）
+============================================================ */
+.fv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--header-height) 0 80px;
+  overflow: hidden;
+
+  // 左側のテキストを読みやすくする淡いグラデーション
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      100deg,
+      rgba(244, 239, 228, 0.92) 0%,
+      rgba(244, 239, 228, 0.55) 40%,
+      rgba(244, 239, 228, 0) 70%
+    );
+  }
+
+  // 背景写真
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+  }
+
+  &__lead {
+    margin-top: 32px;
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-text);
+  }
+
+  &__button {
+    margin-top: 44px;
+  }
+
+  // SCROLL の表示（右下に縦書き）
+  &__scroll {
+    position: absolute;
+    right: 48px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    writing-mode: vertical-rl;
+    color: var(--color-text-light);
+
+    // SCROLL の下にのびる線（アニメーション）
+    &::after {
+      content: "";
+      width: 1px;
+      height: 70px;
+      background-color: var(--color-text-light);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  40% { transform: scaleY(1); transform-origin: top; }
+  60% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================================================
+   コンセプト
+============================================================ */
+.concept {
+  padding: 130px 0;
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+  }
+
+  // 左側：テキスト
+  &__head {
+    flex-shrink: 0;
+    width: 360px;
+    padding-top: 40px;
+  }
+
+  &__title {
+    margin-top: 20px;
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  &__text {
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 2.1;
+    color: var(--color-text-light);
+  }
+
+  // 右側：写真ギャラリー
+  &__gallery {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+  }
+
+  &__item {
+    margin: 0;            // ブラウザの figure デフォルト margin を解除（左寄り防止）
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+
+    // 真ん中の写真だけ少し下げて、リズムを出す
+    &--offset {
+      margin-top: 56px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    min-width: 120px;  // 画面が狭くなっても 120px 以下に潰れないようにする
+    height: 320px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  // 縦書きのキャプション
+  &__caption {
+    writing-mode: vertical-rl;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    color: var(--color-text-light);
+    white-space: nowrap;
+  }
+}
+
+/* ============================================================
+   特徴
+============================================================ */
+.feature {
+  padding: 120px 0;
+  background-color: var(--color-bg-deep);
+
+  &__head {
+    text-align: center;
+  }
+
+  &__title {
+    margin-top: 12px;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  &__list {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  &__item {
+    flex: 1;
+    padding: 48px 32px;
+    background-color: var(--color-white);
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  // アイコンの円
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+
+    svg {
+      width: 38px;
+      height: 38px;
+    }
+  }
+
+  &__item-title {
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  &__item-text {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 2;
+    color: var(--color-text-light);
+    text-align: left;
+  }
+}
+
+/* ============================================================
+   商品 / サービス（メニュー）
+============================================================ */
+.service {
+  padding: 130px 0;
+
+  &__head {
+    text-align: center;
+  }
+
+  &__title {
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  &__text {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--color-text-light);
+  }
+
+  &__list {
+    display: flex;
+    gap: 36px;
+    margin-top: 64px;
+  }
+
+  &__card {
+    flex: 1;
+    background-color: var(--color-white);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(74, 64, 52, 0.12);
+    }
+  }
+
+  &__thumb img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 28px 28px 32px;
+  }
+
+  &__name {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  &__desc {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-text-light);
+  }
+
+  &__price {
+    margin-top: 16px;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-dark);
+  }
+}
+
+/* ============================================================
+   CTA（予約・アクセス）
+============================================================ */
+.cta {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+
+  // 文字を読みやすくする暗いオーバーレイ
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(48, 40, 31, 0.55);
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    text-align: center;
+    color: var(--color-white);
+  }
+
+  &__label {
+    color: var(--color-white);
+  }
+
+  &__title {
+    margin-top: 12px;
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.06em;
+  }
+
+  &__text {
+    margin-top: 24px;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  // 予約ボタンと営業情報をまとめるラッパー
+  // ・gap: 40px → cta__info 内の列ギャップと同じ値にして余白を揃える
+  // ・border-top をここに持たせ、ボタンまで上線を延長する
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  // 営業情報
+  &__info {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 40px;
+  }
+
+  &__info-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  &__info-label {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &__info-data {
+    font-size: 16px;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ============================================================
+   フッター
+============================================================ */
+.footer {
+  padding: 70px 0 28px;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__logo {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+
+  &__logo-sub {
+    margin-top: 4px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: rgba(244, 239, 228, 0.6);
+  }
+
+  &__address {
+    margin-top: 20px;
+    font-size: 13px;
+    line-height: 1.9;
+    color: rgba(244, 239, 228, 0.7);
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__nav-link {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__copyright {
+    margin-top: 56px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(244, 239, 228, 0.5);
+  }
+}
+
+/* ============================================================
+   レスポンシブ：タブレット（1024px以下）
+============================================================ */
+@include mq(tablet) {
+  // PCナビと予約ボタンを隠し、ハンバーガーを表示
+  .header__nav,
+  .header__reserve {
+    display: none;
+  }
+
+  .header__burger {
+    display: flex;
+  }
+
+  // FV
+  .fv__title {
+    font-size: 48px;
+  }
+
+  .fv__scroll {
+    right: 24px;
+  }
+
+  // コンセプト：縦並びに変更
+  .concept {
+    padding: 90px 0;
+
+    &__inner {
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    &__head {
+      width: 100%;
+      padding-top: 0;
+    }
+
+    &__item--offset {
+      margin-top: 0;
+    }
+
+    &__img {
+      height: 260px;
+    }
+  }
+
+  // 特徴：余白を狭める（縦並びへの切り替えは @include mq(md) 側で実施）
+  .feature {
+    padding: 90px 0;
+  }
+
+  // メニュー：余白を狭める（縦並びへの切り替えは @include mq(md) 側で実施）
+  .service {
+    padding: 90px 0;
+
+    &__thumb img {
+      height: 280px;
+    }
+  }
+
+  // CTA
+  .cta {
+    padding: 90px 0;
+  }
+
+  // フッター：縦並びに変更
+  .footer__inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+/* ============================================================
+   レスポンシブ：中間サイズ（800px以下）
+   - 特徴・メニューはここで3カラム → 縦並びに切り替え
+============================================================ */
+@include mq(md) {
+  // 800px以下では section の中身を狭めに（max-width: 650px）。
+  // 800pxより大きい場合は共通ルールの max-width: 1200px が適用される。
+  .feature__inner,
+  .service__inner {
+  }
+
+  .feature__list {
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .service__list {
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 48px;
+  }
+}
+
+/* ============================================================
+   FV：650px以下は背景画像の上に薄い白オーバーレイを敷いて文字を読みやすくする
+   - 既定の .fv::before（左から右へ抜けるグラデーション）を、画面全体を覆う
+     薄い白の半透明レイヤーに差し替える
+============================================================ */
+@media (max-width: 650px) {
+  .fv::before {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* ============================================================
+   レスポンシブ：スマートフォン（600px以下）
+============================================================ */
+@include mq(sp) {
+  // セクション共通の左右余白を狭める
+  .concept__inner,
+  .feature__inner,
+  .service__inner,
+  .cta__inner,
+  .footer__inner,
+  .fv__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .header__inner {
+    padding: 0 24px;
+  }
+
+  // ボタンを全幅に
+  .button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  // FV
+  .fv {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__lead {
+      margin-top: 24px;
+      font-size: 15px;
+    }
+
+    &__scroll {
+      display: none;
+    }
+  }
+
+  // 見出しラベルを少し小さく
+  .concept__label,
+  .feature__label,
+  .service__label,
+  .cta__label {
+    font-size: 32px;
+  }
+
+  .concept__title,
+  .cta__title {
+    font-size: 26px;
+  }
+
+  .feature__title,
+  .service__title {
+    font-size: 24px;
+  }
+
+  // コンセプト：sp は「画像 → キャプション」の縦並びカード形式に切り替え＋セクション全体を中央寄せ
+  .concept {
+    // inner の子要素（head・gallery）を中央寄せに（左寄り防止）
+    // ── 既定の align-items: flex-start が継承されると左寄りになるため、ここで center に上書き
+    &__inner {
+      align-items: center;
+    }
+
+    // head のテキストも中央揃え（gallery と揃えて見た目を統一）
+    &__head {
+      text-align: center;
+    }
+
+    // ギャラリーは縦並び
+    &__gallery {
+      flex-direction: column;
+      gap: 16px;          // 画面が狭いので gap を控えめに（24→16）
+    }
+
+    // 各アイテム：画像が上・キャプションが下の縦並び、中身は中央寄せ
+    &__item {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;          // 画像とキャプションの間隔（小さめ）
+    }
+
+    // 600px以下では固定サイズのカードに（横長 250×180）
+    &__img {
+      width: 250px;
+      height: 180px;
+    }
+
+    // 縦書きをやめて中央寄せの横書きに切り替え
+    &__caption {
+      writing-mode: horizontal-tb;
+      text-align: center;
+    }
+  }
+
+  // 特徴・メニューのカード内側余白を調整
+  .feature__item {
+    padding: 36px 24px;
+  }
+
+  .service__body {
+    padding: 24px 22px 28px;
+  }
+
+  // CTA 営業情報を縦並びに
+  .cta__info {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+  }
+}

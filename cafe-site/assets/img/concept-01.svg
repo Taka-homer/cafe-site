@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-label="こだわりのコーヒー（仮画像）">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b29a73"/>
+      <stop offset="1" stop-color="#6f5a3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="760" fill="url(#g)"/>
+  <g transform="translate(209 213) scale(1.6)" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M26 48 h54 v28 a27 27 0 0 1 -54 0 Z"/>
+    <path d="M80 54 a17 17 0 0 1 0 34"/>
+    <path d="M22 90 h62"/>
+    <path d="M44 38 q-9 -11 0 -22"/>
+    <path d="M62 38 q9 -11 0 -22"/>
+  </g>
+  <text x="300" y="500" text-anchor="middle" font-family="serif" font-size="24" letter-spacing="3" fill="#ffffff" fill-opacity="0.85">こだわりのコーヒー</text>
+  <text x="300" y="535" text-anchor="middle" font-family="serif" font-size="14" letter-spacing="5" fill="#ffffff" fill-opacity="0.55">PHOTO</text>
+</svg>

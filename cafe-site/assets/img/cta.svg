@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" role="img" aria-label="ご予約イメージ（仮画像）">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#8a7556"/>
+      <stop offset="1" stop-color="#4f4231"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0.7" cy="0.25" r="0.7">
+      <stop offset="0" stop-color="#f5e8cf" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#f5e8cf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="800" fill="url(#bg)"/>
+  <rect width="1600" height="800" fill="url(#light)"/>
+  <g fill="#ffffff" fill-opacity="0.1">
+    <circle cx="240" cy="180" r="120"/>
+    <circle cx="430" cy="360" r="70"/>
+    <circle cx="120" cy="430" r="50"/>
+  </g>
+</svg>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日々のカフェ｜HIBI NO CAFE</title>
+  <meta name="description" content="スペシャルティコーヒーと手作りのお菓子で、ほっと落ち着くひとときをお届けするカフェ「日々のカフェ」。">
+
+  <!-- ファビコン -->
+  <link rel="icon" href="./favicon/favicon.svg" type="image/svg+xml">
+
+  <!-- Webフォント（Google Fonts） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+  <!-- CSS（reset.css を先に読み込む） -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- ヘッダー（parts/header.html を JS で読み込み） -->
+  <div data-include="./parts/header.html"></div>
+
+  <!-- ドロワーメニュー（parts/drawer.html を JS で読み込み） -->
+  <div data-include="./parts/drawer.html"></div>
+
+  <main>
+
+    <!-- ============================================
+         FV（ファーストビュー）
+    ============================================= -->
+    <section class="fv" id="fv">
+      <div class="fv__bg">
+        <img src="./assets/img/main-image.png" alt="やわらかな光が差し込む日々のカフェの店内">
+      </div>
+
+      <div class="fv__inner">
+        <h1 class="fv__title">日常に、<br>やさしい時間を。</h1>
+        <p class="fv__lead">
+          スペシャルティコーヒーと手作りのお菓子で、<br>
+          ほっと落ち着くひとときをお届けします。
+        </p>
+        <a href="#service" class="fv__button button">
+          <span class="button__label">メニューを見る</span>
+          <span class="button__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <span class="fv__scroll" aria-hidden="true">SCROLL</span>
+    </section>
+
+
+    <!-- ============================================
+         コンセプト
+    ============================================= -->
+    <section class="concept" id="concept">
+      <div class="concept__inner">
+        <div class="concept__head">
+          <p class="concept__label">Concept</p>
+          <h2 class="concept__title">ここは、あなたの<br>心がふっとゆるむ場所。</h2>
+          <p class="concept__text">
+            一杯のコーヒーをていねいに淹れる時間。<br>
+            お気に入りの席で本を開く、<br>なんでもない午後。<br>
+            日々のカフェは、そんな「ちいさな幸せ」が<br>
+            積み重なっていく場所でありたいと願っています。
+          </p>
+        </div>
+
+        <div class="concept__gallery">
+          <figure class="concept__item">
+            <img class="concept__img" src="./assets/img/concept-01.svg" alt="ハンドドリップで淹れるコーヒー">
+            <figcaption class="concept__caption">こだわりのコーヒー</figcaption>
+          </figure>
+          <figure class="concept__item concept__item--offset">
+            <img class="concept__img" src="./assets/img/concept-02.svg" alt="店内で焼き上げる手作りのお菓子">
+            <figcaption class="concept__caption">手作りのお菓子</figcaption>
+          </figure>
+          <figure class="concept__item">
+            <img class="concept__img" src="./assets/img/concept-03.svg" alt="木の温もりを感じる落ち着いた店内">
+            <figcaption class="concept__caption">居心地のよい空間</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         特徴
+    ============================================= -->
+    <section class="feature" id="feature">
+      <div class="feature__inner">
+        <header class="feature__head">
+          <p class="feature__label">Feature</p>
+          <h2 class="feature__title">日々のカフェが大切にしていること</h2>
+        </header>
+
+        <ul class="feature__list">
+          <li class="feature__item">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h22v9a11 11 0 0 1-22 0z"/>
+                <path d="M34 22a6 6 0 0 1 0 12"/>
+                <path d="M12 40h24"/>
+                <path d="M19 14c-2-2-2-4 0-6"/>
+                <path d="M26 14c-2-2-2-4 0-6"/>
+              </svg>
+            </span>
+            <h3 class="feature__item-title">厳選した一杯</h3>
+            <p class="feature__item-text">
+              世界各地の農園から届くスペシャルティコーヒーを、
+              注文ごとにハンドドリップ。香り高い一杯をお届けします。
+            </p>
+          </li>
+
+          <li class="feature__item">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 24h16l-3 14H19z"/>
+                <path d="M16 24a8 8 0 0 1 16 0"/>
+                <path d="M24 16v-6"/>
+                <path d="M24 10a3 3 0 1 0 0-2"/>
+              </svg>
+            </span>
+            <h3 class="feature__item-title">手しごとのお菓子</h3>
+            <p class="feature__item-text">
+              季節の素材をつかった焼き菓子は、すべて店内で手作り。
+              コーヒーに寄り添う、やさしい甘さに仕上げています。
+            </p>
+          </li>
+
+          <li class="feature__item">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 32h12l-2 8H20z"/>
+                <path d="M24 32c0-9-4-13-11-14 1 9 4 13 11 14z"/>
+                <path d="M24 32c0-9 4-13 11-14-1 9-4 13-11 14z"/>
+                <path d="M24 32V20"/>
+              </svg>
+            </span>
+            <h3 class="feature__item-title">くつろぎの空間</h3>
+            <p class="feature__item-text">
+              木の家具とグリーンに囲まれた店内は、ひとりでも、
+              大切な人とでも。思い思いの時間を過ごせる空間です。
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         商品 / サービス（メニュー）
+    ============================================= -->
+    <section class="service" id="service">
+      <div class="service__inner">
+        <header class="service__head">
+          <p class="service__label">Menu</p>
+          <h2 class="service__title">メニュー</h2>
+          <p class="service__text">毎日の気分に寄り添う、定番のメニューをご紹介します。</p>
+        </header>
+
+        <div class="service__list">
+          <article class="service__card">
+            <div class="service__thumb">
+              <img src="./assets/img/coffee1.png" alt="ハンドドリップコーヒー">
+            </div>
+            <div class="service__body">
+              <h3 class="service__name">ハンドドリップコーヒー</h3>
+              <p class="service__desc">日替わりの豆から選べる、香り高い一杯。</p>
+              <p class="service__price">¥ 550</p>
+            </div>
+          </article>
+
+          <article class="service__card">
+            <div class="service__thumb">
+              <img src="./assets/img/sweets1.png" alt="季節のチーズケーキ">
+            </div>
+            <div class="service__body">
+              <h3 class="service__name">季節のチーズケーキ</h3>
+              <p class="service__desc">材料にこだわった、しっとり濃厚な味わい。</p>
+              <p class="service__price">¥ 600</p>
+            </div>
+          </article>
+
+          <article class="service__card">
+            <div class="service__thumb">
+              <img src="./assets/img/sweets2.png" alt="本日の焼き菓子プレート">
+            </div>
+            <div class="service__body">
+              <h3 class="service__name">本日の焼き菓子プレート</h3>
+              <p class="service__desc">焼きたてのフィナンシェを少しずつ盛り合わせて。</p>
+              <p class="service__price">¥ 780</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         CTA（予約・アクセス）
+    ============================================= -->
+    <section class="cta" id="cta">
+      <div class="cta__bg">
+        <img src="./assets/img/cta.svg" alt="">
+      </div>
+      <div class="cta__inner">
+        <p class="cta__label">Reservation</p>
+        <h2 class="cta__title">ゆっくり過ごす時間を、<br>ご予約ください。</h2>
+        <p class="cta__text">
+          お席のご予約・お問い合わせはお電話にて承っております。<br>
+          みなさまのお越しを、心よりお待ちしております。
+        </p>
+        <!-- 予約ボタンと営業情報をラップ：横並び時の余白と上線を統一する -->
+        <div class="cta__bottom">
+          <a href="tel:000-000-0000" class="cta__button button button--light">
+            <span class="button__label">ご予約はこちら</span>
+            <span class="button__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <dl class="cta__info">
+            <div class="cta__info-row">
+              <dt class="cta__info-label">営業時間</dt>
+              <dd class="cta__info-data">9:00 - 18:00</dd>
+            </div>
+            <div class="cta__info-row">
+              <dt class="cta__info-label">定休日</dt>
+              <dd class="cta__info-data">毎週水曜日</dd>
+            </div>
+            <div class="cta__info-row">
+              <dt class="cta__info-label">住所</dt>
+              <dd class="cta__info-data">○○県○○市○○町1-2-3</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター（parts/footer.html を JS で読み込み） -->
+  <div data-include="./parts/footer.html"></div>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

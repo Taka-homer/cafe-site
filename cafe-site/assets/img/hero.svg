@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="日々のカフェ メインビジュアル（仮）">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#e9dfcc"/>
+      <stop offset="0.55" stop-color="#cbb997"/>
+      <stop offset="1" stop-color="#9a8462"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0.34" cy="0.26" r="0.7">
+      <stop offset="0" stop-color="#fff7e8" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fff7e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#light)"/>
+  <g fill="#ffffff" fill-opacity="0.16">
+    <circle cx="1190" cy="250" r="130"/>
+    <circle cx="1410" cy="470" r="85"/>
+    <circle cx="980" cy="150" r="64"/>
+    <circle cx="1300" cy="120" r="40"/>
+  </g>
+  <rect y="770" width="1600" height="230" fill="#7c6747" fill-opacity="0.28"/>
+  <text x="800" y="940" text-anchor="middle" font-family="serif" font-size="28" letter-spacing="8" fill="#ffffff" fill-opacity="0.5">HERO PHOTO — ここにメイン写真を配置</text>
+</svg>
