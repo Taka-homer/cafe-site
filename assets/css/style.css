@@ -96,6 +96,14 @@ section[id] {
   border-radius: 999px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+}
+.button__icon svg {
+  width: 20px;
+  height: 20px;
+}
 .button__arrow {
   transition: transform 0.3s ease;
 }
@@ -516,22 +524,29 @@ section[id] {
 }
 .service__card {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-white);
   border-radius: 6px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(74, 64, 52, 0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .service__card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 30px rgba(74, 64, 52, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 22px 40px rgba(74, 64, 52, 0.16);
 }
 .service__thumb img {
   width: 100%;
-  height: 240px;
+  aspect-ratio: 4/3;
+  height: auto;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .service__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 28px 28px 32px;
 }
 .service__name {
@@ -546,7 +561,9 @@ section[id] {
   color: var(--color-text-light);
 }
 .service__price {
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 16px;
+  text-align: right;
   font-size: 20px;
   letter-spacing: 0.06em;
   color: var(--color-accent-dark);
@@ -627,6 +644,82 @@ section[id] {
   font-size: 16px;
   letter-spacing: 0.04em;
 }
+.cta__button {
+  gap: 16px;
+}
+.cta__access {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  max-width: 920px;
+  margin: 56px auto 0;
+  color: var(--color-text);
+}
+.cta__map {
+  aspect-ratio: 4/3;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+.cta__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.cta__calendar {
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 6px;
+  padding: 24px 28px;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+.cta__calendar-head {
+  margin-bottom: 14px;
+}
+.cta__calendar-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.cta__calendar-note {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+.cta__calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.cta__calendar-table th {
+  padding-bottom: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--color-text-light);
+  border-bottom: 1px solid rgba(74, 64, 52, 0.12);
+}
+.cta__calendar-table td {
+  padding: 6px 0;
+  font-size: 13px;
+}
+.cta__calendar-table .is-closed,
+.cta__calendar-table .is-closed-head {
+  color: var(--color-accent);
+}
+.cta__calendar-table .is-closed {
+  position: relative;
+}
+.cta__calendar-table .is-closed::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  top: 50%;
+  width: 56%;
+  height: 1px;
+  background-color: var(--color-accent);
+}
 
 /* ============================================================
    フッター
@@ -678,6 +771,30 @@ section[id] {
   letter-spacing: 0.1em;
   color: rgba(244, 239, 228, 0.5);
 }
+.footer__sns {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+}
+.footer__sns-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-bg);
+  border: 1px solid rgba(244, 239, 228, 0.4);
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.footer__sns-link:hover {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+.footer__sns-link svg {
+  width: 16px;
+  height: 16px;
+}
 
 /* ============================================================
    レスポンシブ：タブレット（1024px以下）
@@ -719,9 +836,6 @@ section[id] {
   .service {
     padding: 90px 0;
   }
-  .service__thumb img {
-    height: 280px;
-  }
   .cta {
     padding: 90px 0;
   }
@@ -744,6 +858,11 @@ section[id] {
     flex-direction: column;
     gap: 28px;
     margin-top: 48px;
+  }
+  .cta__access {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 480px;
   }
 }
 /* ============================================================

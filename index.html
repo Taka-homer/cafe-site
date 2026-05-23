@@ -191,7 +191,7 @@
             <div class="service__body">
               <h3 class="service__name">本日の焼き菓子プレート</h3>
               <p class="service__desc">焼きたてのフィナンシェを少しずつ盛り合わせて。</p>
-              <p class="service__price">¥ 780</p>
+              <p class="service__price">¥ 480</p>
             </div>
           </article>
         </div>
@@ -215,7 +215,13 @@
         </p>
         <!-- 予約ボタンと営業情報をラップ：横並び時の余白と上線を統一する -->
         <div class="cta__bottom">
-          <a href="tel:000-000-0000" class="cta__button button button--light">
+          <a href="tel:03-6427-3210" class="cta__button button button--light">
+            <!-- 電話アイコン -->
+            <span class="button__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
             <span class="button__label">ご予約はこちら</span>
             <span class="button__arrow" aria-hidden="true">→</span>
           </a>
@@ -230,10 +236,49 @@
               <dd class="cta__info-data">毎週水曜日</dd>
             </div>
             <div class="cta__info-row">
+              <dt class="cta__info-label">電話</dt>
+              <dd class="cta__info-data">03-6427-3210</dd>
+            </div>
+            <div class="cta__info-row">
               <dt class="cta__info-label">住所</dt>
-              <dd class="cta__info-data">○○県○○市○○町1-2-3</dd>
+              <dd class="cta__info-data">〒150-0001 東京都渋谷区神宮前5-12-3</dd>
             </div>
           </dl>
+        </div>
+
+        <!-- アクセス：Googleマップ + 営業日カレンダー -->
+        <div class="cta__access">
+          <!-- Googleマップ（埋め込み） -->
+          <div class="cta__map">
+            <iframe
+              src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D5-12-3&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="日々のカフェ 店舗地図"></iframe>
+          </div>
+
+          <!-- 営業日カレンダー（毎週水曜定休） -->
+          <div class="cta__calendar">
+            <header class="cta__calendar-head">
+              <h3 class="cta__calendar-title">2026年 5月の営業日</h3>
+              <p class="cta__calendar-note">毎週水曜日は定休日です</p>
+            </header>
+            <table class="cta__calendar-table">
+              <thead>
+                <tr>
+                  <th>日</th><th>月</th><th>火</th><th class="is-closed-head">水</th><th>木</th><th>金</th><th>土</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td>3</td><td>4</td><td>5</td><td class="is-closed">6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td>10</td><td>11</td><td>12</td><td class="is-closed">13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td>17</td><td>18</td><td>19</td><td class="is-closed">20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td>24</td><td>25</td><td>26</td><td class="is-closed">27</td><td>28</td><td>29</td><td>30</td></tr>
+                <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
